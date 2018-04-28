@@ -1,6 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const httpServer = require('http').createServer(app);
+
+app.use(bodyParser.json());
 
 app.get('/todo', (req, res) => {
     res.sendStatus(200);
