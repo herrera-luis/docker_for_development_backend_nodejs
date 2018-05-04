@@ -1,6 +1,6 @@
 const express = require('express');
 const apiRoute = express.Router();
-const todoCtrl = require('../controllers/todoCtrl');
+const todoCtrl = require('./todoController');
 
 apiRoute.get('/', todoCtrl.getAllTodos);
 apiRoute.get('/:todoId', todoCtrl.getTodoById);
