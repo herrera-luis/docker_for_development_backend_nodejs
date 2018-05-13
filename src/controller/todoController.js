@@ -1,30 +1,11 @@
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('todosdb', 'postgres', 'mysecretpassword', {
-    host: 'localhost',
-    dialect: 'postgres',
-
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    },
-
-    operatorsAliases: false
-});
-
-const Todo = sequelize.define('todo', {
-    id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-    topic: Sequelize.STRING,
-    done: Sequelize.BOOLEAN
-});
+const databaseService = require('../model/service/databaseService');
 
 const getAllTodos = (req, res) => {
-    Todo.findAll()
-        .then((allTodos) => {
+    databaseService.todos.findAll()
+        .then(allTodos => {
             res.status(200).send(allTodos);
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error doing the query to database', error);
             res.status(404);
         });
@@ -32,53 +13,58 @@ const getAllTodos = (req, res) => {
 
 const getTodoById = (req, res) => {
     const todoId = req.params.todoId;
-    Todo.findById(todoId)
-        .then((todo) => {
+    databaseService.todos.findById(todoId)
+        .then(todo => {
             res.status(200).send(todo);
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error doing the query to database', error);
             res.status(404);
         });
 };
 
 const saveTodo = (req, res) => {
+    console.log('body', req.body);
     const newTodo = {
-        topic: req.body.topic,
+        title: req.body.title,
         done: req.body.done
     };
 
-    sequelize.sync()
-        .then(() => {
-            return Todo.create(newTodo);
-        })
+    databaseService.todos.create(newTodo)
         .then(todoCreated => {
             console.log(todoCreated.toJSON());
             res.sendStatus(200);
-        }).catch((error) => {
-        console.error('Error doing the query to database', error);
-        res.status(404);
-    });
+        })
+        .catch(error => {
+            console.error('Error doing the query to database', error);
+            res.status(404);
+        });
 };
 
 const updateTodo = (req, res) => {
     const todoId = req.params.todoId;
-    const upgradeableTopic = req.body.topic;
+    const upgradeableTitle = req.body.title;
     const upgradeableDone = req.body.done;
     const upgradeableTodo = {};
-    if(upgradeableTopic) {
-        upgradeableTodo.topic = upgradeableTopic;
+    if (upgradeableTitle) {
+        upgradeableTodo.title = upgradeableTitle;
     }
-    if(upgradeableDone) {
+    if (upgradeableDone) {
         upgradeableTodo.done = upgradeableDone;
     }
-    if(upgradeableTodo !== {}) {
-        Todo.findById(todoId)
-            .then((todo) => {
-                todo.updateAttributes(upgradeableTodo).then(() => {
-                    res.sendStatus(200);
-                });
-            }).catch((error) => {
+    if (upgradeableTodo !== {}) {
+        databaseService.todos.findById(todoId)
+            .then(todo => {
+                todo.updateAttributes(upgradeableTodo)
+                    .then(() => {
+                        res.sendStatus(200);
+                    })
+                    .catch(error => {
+                        console.error('Error doing the query to database', error);
+                        res.status(404);
+                    });
+            })
+            .catch(error => {
                 console.error('Error doing the query to database', error);
                 res.status(404);
             });
@@ -89,8 +75,10 @@ const updateTodo = (req, res) => {
 
 const deleteTodo = (req, res) => {
     const todoId = req.params.todoId;
-    Todo.destroy({
-        where: { id: todoId }
+    databaseService.todos.destroy({
+        where: {
+            id: todoId
+        }
     }).then((deletedCode) => {
         console.log('deletedCode', deletedCode);
         res.sendStatus(200);

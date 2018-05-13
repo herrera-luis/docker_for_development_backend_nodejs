@@ -5,6 +5,6 @@ const app = express();
 const httpServer = require('http').createServer(app);
 
 app.use(bodyParser.json());
-app.use('/todo', apiController);
+app.use('/todos', apiController);
 
 module.exports = httpServer;

@@ -1,11 +1,11 @@
 const express = require('express');
 const apiRoute = express.Router();
-const todoCtrl = require('./todoController');
+const todoController = require('./todoController');
 
-apiRoute.get('/', todoCtrl.getAllTodos);
-apiRoute.get('/:todoId', todoCtrl.getTodoById);
-apiRoute.post('/', todoCtrl.saveTodo);
-apiRoute.put('/:todoId', todoCtrl.updateTodo);
-apiRoute.delete('/:todoId', todoCtrl.deleteTodo);
+apiRoute.get('/', todoController.getAllTodos);
+apiRoute.get('/:todoId', todoController.getTodoById);
+apiRoute.post('/', todoController.saveTodo);
+apiRoute.put('/:todoId', todoController.updateTodo);
+apiRoute.delete('/:todoId', todoController.deleteTodo);
 
 module.exports = apiRoute;

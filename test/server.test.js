@@ -23,7 +23,7 @@ describe('running application', () => {
     it('should response a POST request with Object sent when the path is /todo', (done) => {
         const todo = {
             id: '593',
-            topic: 'topic',
+            title: 'title',
             done: false
         };
         request(server)
