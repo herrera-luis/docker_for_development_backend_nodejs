@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('todosdb', 'postgres', 'mysecretpassword', {
-    host: 'localhost',
+    host: 'todos-database',
     dialect: 'postgres',
 
     pool: {
