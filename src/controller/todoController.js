@@ -79,8 +79,7 @@ const deleteTodo = (req, res) => {
         where: {
             id: todoId
         }
-    }).then((deletedCode) => {
-        console.log('deletedCode', deletedCode);
+    }).then(() => {
         res.sendStatus(200);
     }).catch((error) => {
         console.error('Error doing the query to database', error);
