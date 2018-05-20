@@ -3,7 +3,8 @@ const databaseService = require('../model/service/databaseService');
 const getAllTodos = (req, res) => {
     databaseService.todos.findAll()
         .then(allTodos => {
-            res.status(200).send(allTodos);
+            res.status(200);
+            res.send(allTodos);
         })
         .catch(error => {
             console.error('Error doing the query to database', error);
@@ -15,7 +16,8 @@ const getTodoById = (req, res) => {
     const todoId = req.params.todoId;
     databaseService.todos.findById(todoId)
         .then(todo => {
-            res.status(200).send(todo);
+            res.status(200);
+            res.send(todo);
         })
         .catch(error => {
             console.error('Error doing the query to database', error);
@@ -24,15 +26,13 @@ const getTodoById = (req, res) => {
 };
 
 const saveTodo = (req, res) => {
-    console.log('body', req.body);
     const newTodo = {
         title: req.body.title,
         done: req.body.done
     };
 
     databaseService.todos.create(newTodo)
-        .then(todoCreated => {
-            console.log(todoCreated.toJSON());
+        .then(() => {
             res.sendStatus(200);
         })
         .catch(error => {
