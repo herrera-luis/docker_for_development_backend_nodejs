@@ -2,7 +2,7 @@ const request = require('supertest');
 const chai = require('chai');
 const spies = require('chai-spies');
 chai.use(spies);
-const databaseService = require('../src/model/service/databaseService');
+const databaseService = require('../src/models/database/postgresService');
 
 const server = require('../src/server');
 xdescribe('Running API', () => {

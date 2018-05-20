@@ -1,4 +1,4 @@
-const databaseService = require('../model/service/databaseService');
+const databaseService = require('../models/database/postgresService');
 
 const getAllTodos = (req, res) => {
     databaseService.todos.findAll()

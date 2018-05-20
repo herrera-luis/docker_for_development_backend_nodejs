@@ -1,5 +1,5 @@
 const server = require('./server');
-const databaseService = require('./model/service/databaseService');
+const databaseService = require('./models/database/postgresService');
 
 databaseService.sequelize.sync()
     .then(() => {

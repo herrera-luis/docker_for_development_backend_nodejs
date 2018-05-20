@@ -1,5 +1,5 @@
-const todoController = require('../src/controller/todoController');
-const todos = require('../src/model/service/databaseService').todos;
+const todoController = require('../src/controllers/todoController');
+const todos = require('../src/models/database/postgresService').todos;
 const chai = require('chai');
 const expect = chai.expect;
 const spies = require('chai-spies');

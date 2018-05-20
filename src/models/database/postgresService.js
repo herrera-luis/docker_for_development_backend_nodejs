@@ -21,11 +21,11 @@ const sequelize = new Sequelize(database, user, pass, {
     operatorsAliases: false
 });
 
-const databaseService = {};
+const postgresService = {};
 
-databaseService.Sequelize = Sequelize;
-databaseService.sequelize = sequelize;
+postgresService.Sequelize = Sequelize;
+postgresService.sequelize = sequelize;
 
-databaseService.todos = require('../entity/todo')(sequelize, Sequelize);
+postgresService.todos = require('../entity/todo')(sequelize, Sequelize);
 
-module.exports = databaseService;
+module.exports = postgresService;
