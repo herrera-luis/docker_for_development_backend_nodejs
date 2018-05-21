@@ -1,21 +1,21 @@
-# Api for todos
+# Api for todos made with Node.js
 
-You could do one of the following ways to run the api for todos.
+> *Remember to start database before api server*
 
-> *Remember start database before de api server*
+## With Node
 
-## Node way
+- **Install dependencies:** `$npm install`
+- **Run the tests:** `$npm test`
+- **Run the api:** `$npm start`
+- **Start database:** You need install postgresql and create tododb database or `$./scripts/start_database/sh` to run a database with docker.
 
-- Install dependencies: `$npm install`
-- Run the tests: `$npm test`
-- Run the api: `$npm start`
-- Start database: `You need install postgresql and create tododb database`
+## With Host
 
-## Host way
+- **Run the tests:** `$./scripts/run_unit_tests.sh`
+- **Start api:** `$./scripts/start_api.sh`
+- **Start database:** You need install postgresql and create tododb database or `$./scripts/start_database/sh` to run a database with docker.
 
-- Start api: `$./scripts/start_api.sh`
-- Start database: ```You need install postgresql and create tododb database```
-
-## Docker way
-- Start api: `$./scripts/start_api_docker.sh`
-- Start database: `$./scripts/start_database.sh`
+## With Docker
+- **Run the tests:** `$./scripts/run_unit_tests_docker.sh`
+- **Start api:** `$./scripts/start_api_docker.sh`
+- **Start database:** `$./scripts/start_database_docker.sh`
