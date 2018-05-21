@@ -8,7 +8,7 @@
     "test": "node_modules/.bin/mocha test/**.test.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cristian Toaquiza",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",

@@ -19,3 +19,5 @@
 - **Run the tests:** `$./scripts/run_unit_tests_docker.sh`
 - **Start api:** `$./scripts/start_api_docker.sh`
 - **Start database:** `$./scripts/start_database_docker.sh`
+
+Author: Cristian Toaquiza
