@@ -8,7 +8,7 @@ const getAllTodos = (req, res) => {
         })
         .catch(error => {
             console.error('Error doing the query to database', error);
-            res.status(404);
+            res.status(503);
         });
 };
 
@@ -21,7 +21,7 @@ const getTodoById = (req, res) => {
         })
         .catch(error => {
             console.error('Error doing the query to database', error);
-            res.status(404);
+            res.status(503);
         });
 };
 
@@ -37,7 +37,7 @@ const saveTodo = (req, res) => {
         })
         .catch(error => {
             console.error('Error doing the query to database', error);
-            res.status(404);
+            res.status(503);
         });
 };
 
@@ -61,12 +61,12 @@ const updateTodo = (req, res) => {
                     })
                     .catch(error => {
                         console.error('Error doing the query to database', error);
-                        res.status(404);
+                        res.status(503);
                     });
             })
             .catch(error => {
                 console.error('Error doing the query to database', error);
-                res.status(404);
+                res.status(503);
             });
     } else {
         res.sendStatus(200);
@@ -83,7 +83,7 @@ const deleteTodo = (req, res) => {
         res.sendStatus(200);
     }).catch((error) => {
         console.error('Error doing the query to database', error);
-        res.status(404);
+        res.status(503);
     });
 };
 
